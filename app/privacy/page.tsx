@@ -1,3 +1,26 @@
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Privacy Policy - Qyvex",
+  description: "Read Qyvex's privacy policy. Learn how we protect your data and handle your personal information.",
+  keywords: [
+    "privacy policy",
+    "data protection",
+    "privacy statement",
+  ],
+  openGraph: {
+    title: "Privacy Policy - Qyvex",
+    description: "Our commitment to protecting your privacy.",
+    url: "https://qyvex.tech/privacy",
+    siteName: "Qyvex",
+    type: "website",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
+
 export default function PrivacyPage() {
   return (
     <div className="mx-auto max-w-4xl space-y-4 px-4 py-12">

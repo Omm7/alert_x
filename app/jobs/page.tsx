@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import Link from "next/link";
 import { getJobs } from "@/lib/query";
 import { JobCard } from "@/components/jobs/job-card";
@@ -6,6 +7,38 @@ import { FilterPanel } from "@/components/jobs/filter-panel";
 import { Button } from "@/components/ui/button";
 
 export const dynamic = "force-dynamic";
+
+export const metadata: Metadata = {
+  title: "Job Listings - Qyvex | Browse Tech Jobs, Internships & Off-Campus Drives",
+  description: "Browse all available tech jobs, internships, and off-campus drive positions. Filter by experience level, job type, location, and more. Find your perfect opportunity on Qyvex.",
+  keywords: [
+    "job listings",
+    "tech jobs list",
+    "available positions",
+    "software engineering jobs",
+    "internship opportunities",
+    "off-campus drive positions",
+    "entry level jobs",
+    "mid level jobs",
+    "senior level jobs",
+    "full time positions",
+    "internship positions",
+    "job search",
+    "career opportunities",
+  ],
+  openGraph: {
+    title: "Job Listings - Qyvex",
+    description: "Browse all available tech jobs, internships, and off-campus drives. Find your perfect opportunity.",
+    url: "https://qyvex.tech/jobs",
+    siteName: "Qyvex",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "Job Listings - Qyvex",
+    description: "Browse tech jobs and internships on Qyvex. Filter by location, experience, and job type.",
+  },
+};
 
 type PageProps = {
   searchParams: Promise<{

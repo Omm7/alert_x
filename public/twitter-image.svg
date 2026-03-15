@@ -1,0 +1,25 @@
+<svg width="1024" height="512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="twitterGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f172a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1e293b;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1024" height="512" fill="url(#twitterGradient)"/>
+  
+  <!-- Decorative circles -->
+  <circle cx="80" cy="80" r="60" fill="#3b82f6" opacity="0.1"/>
+  <circle cx="950" cy="450" r="100" fill="#60a5fa" opacity="0.1"/>
+  
+  <!-- Main text -->
+  <text x="120" y="240" font-family="system-ui, -apple-system, sans-serif" font-size="100" font-weight="bold" fill="#60a5fa">
+    Qyvex
+  </text>
+  
+  <!-- Subtitle -->
+  <text x="120" y="340" font-family="system-ui, -apple-system, sans-serif" font-size="44" font-weight="600" fill="#ffffff">
+    Find Your Dream Tech Role
+  </text>
+</svg>

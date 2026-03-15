@@ -1,8 +1,38 @@
+import { Metadata } from "next";
 import { prisma } from "@/lib/db";
 import Image from "next/image";
 import { Card } from "@/components/ui/card";
 
 export const dynamic = "force-dynamic";
+
+export const metadata: Metadata = {
+  title: "Hiring Companies - Qyvex | Top Tech Companies Recruiting",
+  description: "Explore top tech companies actively hiring on Qyvex. Discover companies recruiting for software engineers, data scientists, and internship positions.",
+  keywords: [
+    "hiring companies",
+    "tech companies hiring",
+    "companies recruiting",
+    "software companies",
+    "tech recruiters",
+    "company profiles",
+    "employer directory",
+    "job openings by company",
+    "top tech companies",
+    "startup jobs",
+  ],
+  openGraph: {
+    title: "Hiring Companies - Qyvex",
+    description: "Discover all companies actively hiring on Qyvex. Connect with top tech employers.",
+    url: "https://qyvex.tech/companies",
+    siteName: "Qyvex",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "Hiring Companies - Qyvex",
+    description: "Browse companies and their open positions on Qyvex.",
+  },
+};
 
 export default async function CompaniesPage() {
   const companies = await prisma.company.findMany({

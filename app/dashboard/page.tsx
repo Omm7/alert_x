@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
@@ -6,6 +7,15 @@ import { Card } from "@/components/ui/card";
 import { SubscriptionForm } from "@/components/forms/subscription-form";
 
 export const dynamic = "force-dynamic";
+
+export const metadata: Metadata = {
+  title: "Dashboard - Qyvex | Manage Your Preferences",
+  description: "Access your Qyvex dashboard to manage job preferences, subscriptions, and saved jobs.",
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
 
 export default async function DashboardPage() {
   const session = await getServerSession(authOptions);

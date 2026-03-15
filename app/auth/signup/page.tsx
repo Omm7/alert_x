@@ -1,5 +1,22 @@
+import { Metadata } from "next";
 import { Card } from "@/components/ui/card";
 import { SignupForm } from "@/components/forms/signup-form";
+
+export const metadata: Metadata = {
+  title: "Sign Up - Qyvex | Create Your Student Account",
+  description: "Create your free Qyvex account to receive personalized tech job opportunities, internships, and off-campus drive alerts.",
+  keywords: [
+    "sign up",
+    "create account",
+    "student account",
+    "register",
+    "join Qyvex",
+  ],
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
 
 export default async function SignupPage() {
   return (

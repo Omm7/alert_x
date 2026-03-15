@@ -1,5 +1,16 @@
+import { Metadata } from "next";
 import { Card } from "@/components/ui/card";
 import { LoginForm } from "@/components/forms/login-form";
+
+export const metadata: Metadata = {
+  title: "Login - Qyvex | Sign In to Your Account",
+  description: "Sign in to your Qyvex account to access personalized job opportunities and manage your preferences.",
+  keywords: ["login", "sign in", "account access"],
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
 
 export default async function LoginPage() {
   return (

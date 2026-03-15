@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Metadata } from "next";
 import { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/db";
 import { Button } from "@/components/ui/button";
@@ -7,6 +8,25 @@ import { Card } from "@/components/ui/card";
 import { SubscriptionForm } from "@/components/forms/subscription-form";
 
 export const dynamic = "force-dynamic";
+
+export const metadata: Metadata = {
+  title: "Qyvex - Find Tech Jobs, Internships & Off-Campus Opportunities",
+  description:
+    "Discover verified tech jobs, internships, and off-campus drives. Get real-time job alerts tailored for CS students. Search software engineering, data science, AI/ML, and cybersecurity roles.",
+  keywords: [
+    "tech jobs India",
+    "software engineering jobs",
+    "internships for students",
+    "off-campus drives",
+    "campus recruitment",
+  ],
+  openGraph: {
+    title: "Qyvex - Find Your Dream Tech Role",
+    description:
+      "Real-time job alerts for tech professionals and CS students. Discover internships, full-time roles, and off-campus opportunities.",
+    type: "website",
+  },
+};
 
 const categories = [
   { name: "Software Engineering", value: "SOFTWARE_ENGINEERING" },
