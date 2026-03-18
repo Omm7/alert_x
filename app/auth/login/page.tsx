@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { Card } from "@/components/ui/card";
 import { LoginForm } from "@/components/forms/login-form";
 
@@ -23,10 +24,15 @@ export default async function LoginPage() {
       <div className="w-full max-w-md relative z-10">
         {/* Logo */}
         <div className="text-center mb-8">
-          <Link href="/" className="inline-block">
-            <div className="text-4xl font-bold tracking-tight bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text text-transparent hover:scale-105 transition-transform duration-200">
-              QYVEX
-            </div>
+          <Link href="/" className="inline-block hover:scale-105 transition-transform duration-200">
+            <Image 
+              src="/qyvex logo.png" 
+              alt="QYVEX Logo" 
+              width={140} 
+              height={40} 
+              priority 
+              className="object-contain h-12 w-auto"
+            />
           </Link>
           <p className="text-slate-400 text-sm mt-2">Find Your Dream Tech Role</p>
         </div>
