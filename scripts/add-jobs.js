@@ -50,19 +50,19 @@ async function sendJobAlertEmail(emailPayload) {
 // Job data - copy from lib/jobs-to-add.ts
 const NEW_JOBS = [
   {
-     title: "Development Engineer 1",
-    companyName: "Comcast",
-    location: "Chennai",
+    title: "Technical Support Engineer",
+    companyName: "Salesforce",
+    location: "Bangalore / Hyderabad",
     salary: "Not Disclosed",
     jobType: "FULL_TIME",
     category: "SOFTWARE_ENGINEERING",
     courseType: "BTECH",
     experienceLevel: "ENTRY",
-    description: "Join Comcast as a Development Engineer 1 to design, develop, test, and debug software applications while collaborating with cross-functional teams.",
-    requirements: "Programming, Coding, Software Development Basics, Debugging, Testing, Problem Solving, Engineering Concepts, Bachelor's Degree",
-    responsibilities: "Design software applications, Develop and implement code, Test and debug applications, Collaborate with cross-functional teams",
-    benefits: "Hands-on software development experience, Industry exposure, Career growth opportunities, Learning and development programs",
-    applyLink: "https://jobs.comcast.com/job/-/-/45483/92768297952"
+    description: "Join Salesforce as a Technical Support Engineer to handle customer issues, troubleshoot complex problems, and support the AI-powered CRM cloud platform.",
+    requirements: "SQL, Data Modeling, JavaScript, Python, Apex, Troubleshooting, Debugging, CRM Basics, Cloud Basics, Generative AI (LLMs, RAG), B.Tech/CS or equivalent",
+    responsibilities: "Resolve customer issues, Troubleshoot complex technical problems, Support Salesforce CRM platform, Collaborate with internal teams",
+    benefits: "Exposure to AI and cloud technologies, High growth opportunities, Industry-leading platform experience, Learning and development",
+    applyLink: "https://careers.salesforce.com/en/jobs/jr323181/technical-support-engineer/"
   },
 ];
 
