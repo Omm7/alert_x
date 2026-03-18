@@ -99,7 +99,8 @@ export const metadata: Metadata = {
     telephone: false,
   },
   icons: {
-    icon: "/qyvex short logo.png",
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
     apple: "/qyvex short logo.png",
   },
 };
