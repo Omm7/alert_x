@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { Button } from "@/components/ui/button";
@@ -13,6 +13,17 @@ export function SubscriptionForm() {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
   const [messageType, setMessageType] = useState<"success" | "error">("error");
+  const [subscribed, setSubscribed] = useState(false);
+
+  // Auto-dismiss success message after 2 seconds
+  useEffect(() => {
+    if (message && messageType === "success") {
+      const timer = setTimeout(() => {
+        setMessage(null);
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [message, messageType]);
 
   async function handleSubscribe() {
     setLoading(true);
@@ -23,8 +34,8 @@ export function SubscriptionForm() {
     if (status === "unauthenticated") {
       setLoading(false);
       stopLoading();
-      // Redirect to login page
-      router.push("/auth/signin");
+      // Redirect to login page (fixed from /auth/signin to /auth/login)
+      router.push("/auth/login");
       return;
     }
 
@@ -37,7 +48,8 @@ export function SubscriptionForm() {
 
       if (res.ok) {
         setMessageType("success");
-        setMessage("✅ You're subscribed! Check your email for confirmation.");
+        setMessage("👉 Thanks for subscribing!");
+        setSubscribed(true);
       } else {
         setMessageType("error");
         const data = await res.json();
@@ -64,14 +76,18 @@ export function SubscriptionForm() {
       
       <Button 
         onClick={handleSubscribe}
-        disabled={isLoading} 
-        className="w-full py-6 text-lg font-semibold"
+        disabled={isLoading || subscribed}
+        className={`w-full py-6 text-lg font-semibold transition-all duration-300 ${
+          subscribed 
+            ? "bg-green-600 hover:bg-green-600 dark:bg-green-700 dark:hover:bg-green-700" 
+            : ""
+        }`}
       >
-        {isLoading ? "Processing..." : status === "unauthenticated" ? "Login to Subscribe" : "Subscribe to Get Job Alerts"}
+        {isLoading ? "Processing..." : subscribed ? "👉 Subscribed" : "👉 Subscribe to get job alerts"}
       </Button>
 
       {message && (
-        <p className={`text-sm text-center ${messageType === "success" ? "text-green-600 dark:text-green-400" : "text-red-600 dark:text-red-400"}`}>
+        <p className={`text-sm text-center animate-in fade-in duration-300 ${messageType === "success" ? "text-green-600 dark:text-green-400 font-semibold" : "text-red-600 dark:text-red-400"}`}>
           {message}
         </p>
       )}
