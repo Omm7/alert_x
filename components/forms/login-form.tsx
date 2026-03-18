@@ -22,7 +22,7 @@ export function LoginForm() {
       if (session.user.role === "ADMIN") {
         router.replace("/admin");
       } else {
-        router.replace("/dashboard");
+        router.replace("/jobs");
       }
     } else if (status !== "loading") {
       setIsCheckingSession(false);

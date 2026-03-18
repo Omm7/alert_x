@@ -136,6 +136,14 @@ export function Navbar() {
             </>
           ) : (
             <div className="flex items-center gap-3">
+              <Button 
+                asChild 
+                variant="ghost"
+                size="sm" 
+                className="text-sm text-gray-300 hover:text-cyan-400 transition-colors duration-200"
+              >
+                <Link href="/dashboard">Saved Jobs</Link>
+              </Button>
               <ProfileDropdown />
               {session.user.role === "ADMIN" && (
                 <Button 
@@ -217,6 +225,14 @@ export function Navbar() {
                   </>
                 ) : (
                   <>
+                    <Button 
+                      asChild 
+                      variant="ghost"
+                      size="sm" 
+                      className="w-full justify-start text-sm text-gray-300 hover:text-cyan-400 hover:bg-white/5"
+                    >
+                      <Link href="/dashboard">Saved Jobs</Link>
+                    </Button>
                     <ProfileDropdown />
                     {session.user.role === "ADMIN" && (
                       <Button 
