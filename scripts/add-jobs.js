@@ -50,19 +50,19 @@ async function sendJobAlertEmail(emailPayload) {
 // Job data - copy from lib/jobs-to-add.ts
 const NEW_JOBS = [
   {
-    title: "Data Engineer",
-    companyName: "iCIMS",
-    location: "Hyderabad (Hybrid)",
+     title: "Development Engineer 1",
+    companyName: "Comcast",
+    location: "Chennai",
     salary: "Not Disclosed",
     jobType: "FULL_TIME",
-    category: "DATA_SCIENCE",
+    category: "SOFTWARE_ENGINEERING",
     courseType: "BTECH",
     experienceLevel: "ENTRY",
-    description: "Join iCIMS as a Data Engineer to build and maintain data pipelines, work on cloud platforms, and support analytics and data-driven solutions.",
-    requirements: "SQL, Data Concepts, Python, Java, Scala, ETL, Data Pipelines, AWS, Azure, Snowflake, Problem Solving, Bachelor's in CS/IT/Engineering",
-    responsibilities: "Build data pipelines, Maintain ETL processes, Work with cloud platforms, Support analytics and data solutions",
-    benefits: "Hands-on data engineering experience, Cloud exposure, Career growth, Industry-level projects",
-    applyLink: "https://careers.icims.com/careers-home/jobs/6437"
+    description: "Join Comcast as a Development Engineer 1 to design, develop, test, and debug software applications while collaborating with cross-functional teams.",
+    requirements: "Programming, Coding, Software Development Basics, Debugging, Testing, Problem Solving, Engineering Concepts, Bachelor's Degree",
+    responsibilities: "Design software applications, Develop and implement code, Test and debug applications, Collaborate with cross-functional teams",
+    benefits: "Hands-on software development experience, Industry exposure, Career growth opportunities, Learning and development programs",
+    applyLink: "https://jobs.comcast.com/job/-/-/45483/92768297952"
   },
 ];
 
