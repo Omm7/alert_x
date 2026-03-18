@@ -50,19 +50,19 @@ async function sendJobAlertEmail(emailPayload) {
 // Job data - copy from lib/jobs-to-add.ts
 const NEW_JOBS = [
   {
-    title: "AI Software Engineer",
-    companyName: "DHL",
-    location: "Indore",
+    title: "Data Engineer",
+    companyName: "iCIMS",
+    location: "Hyderabad (Hybrid)",
     salary: "Not Disclosed",
     jobType: "FULL_TIME",
-    category: "AI_ML",
+    category: "DATA_SCIENCE",
     courseType: "BTECH",
     experienceLevel: "ENTRY",
-    description: "Join DHL as an AI Software Engineer to work on real-world AI use cases, build Generative AI solutions, and enhance business processes using advanced AI tools.",
-    requirements: "Python, Generative AI, Prompt Engineering, LangChain, n8n, RAG, AI Workflows, DevSecOps, Git",
-    responsibilities: "Develop GenAI solutions, Build AI workflows, Work on real-world AI use cases, Improve business processes using AI tools",
-    benefits: "High-demand AI role, Hands-on GenAI experience, Career growth opportunities, Exposure to enterprise AI systems",
-    applyLink: "https://careers.dhl.com/global/en/job/DPDHGLOBALAV305189ENGLOBALEXTERNAL/AI-Software-Engineer?"
+    description: "Join iCIMS as a Data Engineer to build and maintain data pipelines, work on cloud platforms, and support analytics and data-driven solutions.",
+    requirements: "SQL, Data Concepts, Python, Java, Scala, ETL, Data Pipelines, AWS, Azure, Snowflake, Problem Solving, Bachelor's in CS/IT/Engineering",
+    responsibilities: "Build data pipelines, Maintain ETL processes, Work with cloud platforms, Support analytics and data solutions",
+    benefits: "Hands-on data engineering experience, Cloud exposure, Career growth, Industry-level projects",
+    applyLink: "https://careers.icims.com/careers-home/jobs/6437"
   },
 ];
 
