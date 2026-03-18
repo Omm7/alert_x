@@ -34,15 +34,15 @@ export function SavedJobsList({ savedJobs, onJobSaved }: SavedJobsListProps) {
   const [notification, setNotification] = useState<string | null>(null);
   const [removingId, setRemovingId] = useState<string | null>(null);
 
-  const removeJob = async (jobId: string) => {
-    setRemovingId(jobId);
+  const removeJob = async (savedJobId: string) => {
+    setRemovingId(savedJobId);
     try {
-      const res = await fetch(`/api/saved-jobs/${jobId}`, {
+      const res = await fetch(`/api/saved-jobs/${savedJobId}`, {
         method: "DELETE",
       });
 
       if (res.ok) {
-        setJobs(jobs.filter((item) => item.job.id !== jobId));
+        setJobs(jobs.filter((item) => item.id !== savedJobId));
         setNotification("✅ Job removed from saved");
         setTimeout(() => setNotification(null), 2000);
       }
@@ -145,8 +145,8 @@ export function SavedJobsList({ savedJobs, onJobSaved }: SavedJobsListProps) {
                 </a>
               </Button>
               <Button
-                onClick={() => removeJob(item.job.id)}
-                disabled={removingId === item.job.id}
+                onClick={() => removeJob(item.id)}
+                disabled={removingId === item.id}
                 variant="outline"
                 size="sm"
                 className="hover:bg-red-50 dark:hover:bg-red-900/30"
