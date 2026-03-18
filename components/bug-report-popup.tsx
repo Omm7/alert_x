@@ -69,7 +69,7 @@ export function BugReportPopup() {
     return (
       <button
         onClick={toggleExpand}
-        className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 p-3 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 text-white shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300 animate-pulse"
+        className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 p-3 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 text-white shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300 animate-pulse"
         title="Report a bug"
         aria-label="Report a bug"
       >
@@ -80,7 +80,7 @@ export function BugReportPopup() {
 
   // Expanded state - full form
   return (
-    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 w-[calc(100vw-2rem)] sm:w-96 max-w-md animate-slide-up">
+    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 w-[calc(100vw-2rem)] sm:w-96 max-w-md animate-slide-up">
       <div className="rounded-lg border border-slate-800 bg-gradient-to-br from-slate-900/95 to-slate-950/95 backdrop-blur-xl shadow-2xl p-3 sm:p-4 space-y-4">
         {/* Header */}
         <div className="flex items-start justify-between gap-2 sm:gap-3">
