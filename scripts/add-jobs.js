@@ -50,19 +50,19 @@ async function sendJobAlertEmail(emailPayload) {
 // Job data - copy from lib/jobs-to-add.ts
 const NEW_JOBS = [
   {
-    title: "Operations Associate (Merchant KYC)",
-    companyName: "PhonePe",
-    location: "Bangalore",
+    title: "Freshers / Early Career Opportunities",
+    companyName: "Siemens",
+    location: "Pune",
     salary: "Not Disclosed",
     jobType: "FULL_TIME",
     category: "OFF_CAMPUS_DRIVE",
     courseType: "BTECH",
     experienceLevel: "ENTRY",
-    description: "Join PhonePe as an Operations Associate to handle merchant KYC verification, ensure compliance, detect fraud patterns, and maintain high accuracy in verification processes.",
-    requirements: "Attention to Detail, Document Verification, Compliance, Accuracy, English Reading, Regional Language, Any Graduate",
-    responsibilities: "Validate KYC documents, Ensure compliance, Detect fraud patterns, Maintain verification accuracy",
-    benefits: "Opportunity in FinTech industry, Hands-on operational experience, Career growth, Learning opportunities, Rotational shifts exposure",
-    applyLink: "https://job-boards.greenhouse.io/embed/job_app?for=phonepe&gh_src=961e65dc3us&token=7659792003"
+    description: "Join Siemens through multiple fresher and early career opportunities to work with global teams, build innovative solutions, and shape the future of technology.",
+    requirements: "Problem Solving, Technical Skills, Analytical Skills, Communication, Teamwork, Graduates with relevant skills",
+    responsibilities: "Work on innovative solutions, Collaborate with global teams, Contribute to technology-driven projects",
+    benefits: "Global exposure, Career growth opportunities, Work with a leading tech company, Learning and development",
+    applyLink: "https://jobs.siemens.com/en_US/externaljobs/JobDetail/491311?source=LinkedIn&sourceType=PREMIUM_POST_SITE"
   },
 ];
 
