@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { useLoading } from "@/lib/loading-context";
+import { useSaveNotification } from "@/lib/save-notification-context";
 
 interface JobActionsProps {
   jobId: string;
@@ -12,6 +13,7 @@ interface JobActionsProps {
 
 export function JobActions({ jobId, applyLink, jobTitle = "this job" }: JobActionsProps) {
   const { startLoading, stopLoading } = useLoading();
+  const { showNotification } = useSaveNotification();
   const [status, setStatus] = useState<string | null>(null);
   const [statusType, setStatusType] = useState<"success" | "error" | null>(null);
 
@@ -37,14 +39,17 @@ export function JobActions({ jobId, applyLink, jobTitle = "this job" }: JobActio
       if (res.ok) {
         setStatusType("success");
         setStatus("✅ Job saved successfully!");
+        showNotification("✅ Job saved in dashboard", "success");
       } else {
         const data = await res.json();
         setStatusType("error");
         setStatus(data.error || "❌ Please login to save jobs");
+        showNotification("❌ Please login to save jobs", "error");
       }
     } catch (error) {
       setStatusType("error");
       setStatus("❌ Error saving job. Please try again.");
+      showNotification("❌ Error saving job", "error");
     }
   }
 

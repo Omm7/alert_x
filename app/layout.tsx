@@ -4,6 +4,7 @@ import "./globals.css";
 import { APP_DESCRIPTION, APP_NAME } from "@/lib/constants";
 import { Providers } from "@/components/providers";
 import { LoadingOverlay } from "@/components/loading-overlay";
+import { SaveNotification } from "@/components/save-notification";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 
@@ -109,6 +110,7 @@ export default function RootLayout({
       <body className={`${jakarta.variable} min-h-screen antialiased`}>
         <Providers>
           <LoadingOverlay />
+          <SaveNotification />
           <div className="relative flex min-h-screen flex-col">
             <Navbar />
             <main className="flex-1">{children}</main>
