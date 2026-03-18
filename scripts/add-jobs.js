@@ -50,19 +50,19 @@ async function sendJobAlertEmail(emailPayload) {
 // Job data - copy from lib/jobs-to-add.ts
 const NEW_JOBS = [
   {
-    title: "Graduate Trainee",
-    companyName: "Calix",
-    location: "Bangalore (Hybrid)",
+    title: "AI Software Engineer",
+    companyName: "DHL",
+    location: "Indore",
     salary: "Not Disclosed",
     jobType: "FULL_TIME",
-    category: "CYBERSECURITY",
+    category: "AI_ML",
     courseType: "BTECH",
     experienceLevel: "ENTRY",
-    description: "Join Calix as a Graduate Trainee to work on cybersecurity, threat detection, and network security analysis in a hybrid environment.",
-    requirements: "Networking (TCP/IP, OSI), Cybersecurity Basics, Python (Basic), Linux, Windows, Packet Analysis (Wireshark), 2024/2025 Batch (CS/IT/Cyber Security/Networking)",
-    responsibilities: "Threat detection, Network security analysis, IDS/NIDS monitoring, Cyber threat research",
-    benefits: "Hands-on cybersecurity experience, Industry exposure, Learning opportunities, Career growth",
-    applyLink: "https://calix.wd1.myworkdayjobs.com/en-US/ExternalInternational/job/Bangalore/Graduate-Trainee_R-11540"
+    description: "Join DHL as an AI Software Engineer to work on real-world AI use cases, build Generative AI solutions, and enhance business processes using advanced AI tools.",
+    requirements: "Python, Generative AI, Prompt Engineering, LangChain, n8n, RAG, AI Workflows, DevSecOps, Git",
+    responsibilities: "Develop GenAI solutions, Build AI workflows, Work on real-world AI use cases, Improve business processes using AI tools",
+    benefits: "High-demand AI role, Hands-on GenAI experience, Career growth opportunities, Exposure to enterprise AI systems",
+    applyLink: "https://careers.dhl.com/global/en/job/DPDHGLOBALAV305189ENGLOBALEXTERNAL/AI-Software-Engineer?"
   },
 ];
 
