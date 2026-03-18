@@ -1,7 +1,9 @@
 /**
- * Clearbit/Brandfetch API Integration (Node.js)
- * Fetches company logos automatically
+ * Brandfetch API Integration (Node.js)
+ * Fetches company logos using Brandfetch API
  */
+
+require('dotenv').config();
 
 async function getCompanyLogoFromBrandfetch(companyName, website) {
   try {
@@ -27,21 +29,62 @@ async function getCompanyLogoFromBrandfetch(companyName, website) {
 
     console.log(`   🔍 Fetching logo for ${companyName} (domain: ${domain})...`);
 
-    // Construct Clearbit logo URL
-    // Clearbit will return the logo URL directly, or 404 if not found
-    const logoUrl = `https://logo.clearbit.com/${domain}?size=256`;
+    const apiKey = process.env.BRANDFETCH_API_KEY;
+    if (!apiKey) {
+      throw new Error('BRANDFETCH_API_KEY not set in environment variables');
+    }
+
+    console.log(`   🔑 Using Brandfetch API...`);
+
+    // Call Brandfetch API v2 endpoint
+    const response = await fetch(`https://api.brandfetch.io/v2/brands/${domain}`, {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${apiKey}`,
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      console.log(`   ⚠️  Brandfetch API returned status ${response.status}`);
+      const errorText = await response.text();
+      console.log(`   Error response: ${errorText}`);
+      // Return placeholder on API error
+      return `https://via.placeholder.com/150?text=${companyName.split(' ')[0]}`;
+    }
+
+    const data = await response.json();
     
-    console.log(`   📍 Logo URL: ${logoUrl}`);
+    // Extract logo URL from response
+    // Brandfetch returns logos array with different types (icon, logo, etc.)
+    let logoUrl = null;
     
-    // For now, we'll assume the logo URL is valid if constructed
-    // In production on Vercel, this will work. Locally might have network issues.
-    console.log(`   ✅ Logo URL generated!`);
+    if (data.logos && Array.isArray(data.logos) && data.logos.length > 0) {
+      // Prefer icon type, then logo type, then first available
+      let selectedLogo = data.logos.find(logo => logo.type === 'icon') || 
+                        data.logos.find(logo => logo.type === 'logo') ||
+                        data.logos[0];
+      
+      if (selectedLogo && selectedLogo.formats && Array.isArray(selectedLogo.formats) && selectedLogo.formats.length > 0) {
+        // Get the first format's src (usually png or jpeg)
+        logoUrl = selectedLogo.formats[0].src;
+      }
+    }
+
+    if (!logoUrl) {
+      console.log(`   ⚠️  No logo found in Brandfetch response`);
+      return `https://via.placeholder.com/150?text=${companyName.split(' ')[0]}`;
+    }
+
+    console.log(`   📍 Logo URL: ${logoUrl.substring(0, 80)}...`);
+    console.log(`   ✅ Logo fetched from Brandfetch!`);
     return logoUrl;
 
   } catch (error) {
     console.log(
-      `   ⚠️  Error generating logo URL: ${error instanceof Error ? error.message : error.toString()}`
+      `   ⚠️  Error fetching logo: ${error instanceof Error ? error.message : error.toString()}`
     );
+    console.log(`   Debug info:`, error);
     // Return placeholder on error
     return `https://via.placeholder.com/150?text=${companyName.split(' ')[0]}`;
   }
