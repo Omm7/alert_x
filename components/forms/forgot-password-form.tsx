@@ -37,7 +37,7 @@ export function ForgotPasswordForm() {
   }
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-3 sm:space-y-4">
       <Input
         name="email"
         type="email"
@@ -45,11 +45,12 @@ export function ForgotPasswordForm() {
         value={email}
         onChange={(event) => setEmail(event.target.value)}
         required
+        className="h-10 sm:h-11 text-xs sm:text-sm"
       />
-      <Button onClick={onSubmit} disabled={loading || !email} className="w-full">
+      <Button onClick={onSubmit} disabled={loading || !email} className="w-full min-h-10 sm:min-h-11 text-xs sm:text-sm">
         Send Reset Code
       </Button>
-      {error && <p className="text-sm text-red-500">{error}</p>}
+      {error && <p className="text-xs sm:text-sm text-red-500">{error}</p>}
     </div>
   );
 }

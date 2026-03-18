@@ -69,8 +69,8 @@ export function SavedJobsList({ savedJobs, onJobSaved }: SavedJobsListProps) {
     <div className="space-y-4 relative">
       {/* Notification */}
       {notification && (
-        <div className="fixed top-20 left-1/2 -translate-x-1/2 z-50 animate-in fade-in slide-in-from-top-2 duration-300">
-          <div className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-6 py-3 rounded-xl shadow-lg font-semibold">
+        <div className="fixed top-16 sm:top-20 left-1/2 -translate-x-1/2 z-50 px-4 animate-in fade-in slide-in-from-top-2 duration-300">
+          <div className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg sm:rounded-xl shadow-lg font-semibold text-xs sm:text-sm">
             {notification}
           </div>
         </div>
@@ -127,17 +127,17 @@ export function SavedJobsList({ savedJobs, onJobSaved }: SavedJobsListProps) {
               </div>
             </div>
 
-            <div className="flex gap-2 pt-3 border-t border-slate-200/40 dark:border-slate-700/40 relative z-10">
+            <div className="flex gap-2 pt-3 border-t border-slate-200/40 dark:border-slate-700/40 relative z-10 flex-col sm:flex-row">
               <Button
                 asChild
-                className="flex-1 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold"
+                className="flex-1 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold text-xs sm:text-sm"
                 size="sm"
               >
                 <Link href={`/jobs/${item.job.id}`}>View Details</Link>
               </Button>
               <Button
                 asChild
-                className="flex-1 bg-gradient-to-r from-cyan-600 to-cyan-700 hover:from-cyan-700 hover:to-cyan-800 text-white font-semibold"
+                className="flex-1 bg-gradient-to-r from-cyan-600 to-cyan-700 hover:from-cyan-700 hover:to-cyan-800 text-white font-semibold text-xs sm:text-sm"
                 size="sm"
               >
                 <a href={item.job.applyLink} target="_blank" rel="noreferrer">
@@ -149,7 +149,7 @@ export function SavedJobsList({ savedJobs, onJobSaved }: SavedJobsListProps) {
                 disabled={removingId === item.id}
                 variant="outline"
                 size="sm"
-                className="hover:bg-red-50 dark:hover:bg-red-900/30"
+                className="hover:bg-red-50 dark:hover:bg-red-900/30 text-xs sm:text-sm"
               >
                 <Trash2 className="size-4" />
               </Button>

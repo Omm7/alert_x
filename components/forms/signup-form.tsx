@@ -89,10 +89,10 @@ export function SignupForm() {
   }
 
   return (
-    <form action={onSubmit} className="space-y-4">
-      <Input name="name" type="text" placeholder="Full Name" required />
-      <Input name="email" type="email" placeholder="Email" required />
-      <Select name="college" required defaultValue="">
+    <form action={onSubmit} className="space-y-3 sm:space-y-4">
+      <Input name="name" type="text" placeholder="Full Name" required className="h-10 sm:h-11 text-xs sm:text-sm" />
+      <Input name="email" type="email" placeholder="Email" required className="h-10 sm:h-11 text-xs sm:text-sm" />
+      <Select name="college" required defaultValue="" className="h-10 sm:h-11 text-xs sm:text-sm">
         <option value="" disabled>
           Select College Name
         </option>
@@ -102,7 +102,7 @@ export function SignupForm() {
           </option>
         ))}
       </Select>
-      <Select name="year" required defaultValue="">
+      <Select name="year" required defaultValue="" className="h-10 sm:h-11 text-xs sm:text-sm">
         <option value="" disabled>
           Select Passing Year
         </option>
@@ -112,7 +112,7 @@ export function SignupForm() {
           </option>
         ))}
       </Select>
-      <Select name="branch" required defaultValue="">
+      <Select name="branch" required defaultValue="" className="h-10 sm:h-11 text-xs sm:text-sm">
         <option value="" disabled>
           Select Branch
         </option>
@@ -122,13 +122,13 @@ export function SignupForm() {
           </option>
         ))}
       </Select>
-      <Input name="password" type="password" placeholder="Password" required minLength={8} />
-      <Input name="confirmPassword" type="password" placeholder="Confirm Password" required minLength={8} />
-      <AnimatedButton className="w-full" loading={loading}>
+      <Input name="password" type="password" placeholder="Password" required minLength={8} className="h-10 sm:h-11 text-xs sm:text-sm" />
+      <Input name="confirmPassword" type="password" placeholder="Confirm Password" required minLength={8} className="h-10 sm:h-11 text-xs sm:text-sm" />
+      <AnimatedButton className="w-full min-h-10 sm:min-h-11 text-xs sm:text-sm" loading={loading}>
         Create Account
       </AnimatedButton>
-      {error && <p className="text-sm text-red-500">{error}</p>}
-      {success && <p className="text-sm text-emerald-600">{success}</p>}
+      {error && <p className="text-xs sm:text-sm text-red-500">{error}</p>}
+      {success && <p className="text-xs sm:text-sm text-emerald-600">{success}</p>}
     </form>
   );
 }

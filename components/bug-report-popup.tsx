@@ -69,24 +69,24 @@ export function BugReportPopup() {
     return (
       <button
         onClick={toggleExpand}
-        className="fixed bottom-6 right-6 z-40 p-3 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 text-white shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300 animate-pulse"
+        className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 p-3 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 text-white shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300 animate-pulse"
         title="Report a bug"
         aria-label="Report a bug"
       >
-        <AlertCircle className="w-6 h-6" />
+        <AlertCircle className="w-5 h-5 sm:w-6 sm:h-6" />
       </button>
     );
   }
 
   // Expanded state - full form
   return (
-    <div className="fixed bottom-6 right-6 z-40 w-96 max-w-[calc(100vw-2rem)] animate-slide-up">
-      <div className="rounded-lg border border-slate-800 bg-gradient-to-br from-slate-900/95 to-slate-950/95 backdrop-blur-xl shadow-2xl p-4 space-y-4">
+    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 w-[calc(100vw-2rem)] sm:w-96 max-w-md animate-slide-up">
+      <div className="rounded-lg border border-slate-800 bg-gradient-to-br from-slate-900/95 to-slate-950/95 backdrop-blur-xl shadow-2xl p-3 sm:p-4 space-y-4">
         {/* Header */}
-        <div className="flex items-start justify-between gap-3">
+        <div className="flex items-start justify-between gap-2 sm:gap-3">
           <div className="flex items-center gap-2">
-            <AlertCircle className="w-5 h-5 text-cyan-400 flex-shrink-0" />
-            <h3 className="font-semibold text-white">Report a Bug</h3>
+            <AlertCircle className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-400 flex-shrink-0" />
+            <h3 className="font-semibold text-sm sm:text-base text-white">Report a Bug</h3>
           </div>
           <button
             onClick={handleClose}
@@ -98,7 +98,7 @@ export function BugReportPopup() {
         </div>
 
         {/* Message */}
-        <p className="text-sm text-slate-300">
+        <p className="text-xs sm:text-sm text-slate-300">
           Is everything working properly? Let us know if you find any issues or have feedback.
         </p>
 
@@ -108,9 +108,9 @@ export function BugReportPopup() {
             <textarea
               value={feedback}
               onChange={(e) => setFeedback(e.target.value)}
-              placeholder="Describe the issue or your feedback…"
+              placeholder="Describe the issue…"
               maxLength={500}
-              className="w-full px-3 py-2 bg-slate-800/50 border border-slate-700 rounded-lg text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500/30 resize-none"
+              className="w-full px-2 sm:px-3 py-2 bg-slate-800/50 border border-slate-700 rounded-lg text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500/30 resize-none"
               rows={3}
               disabled={isSubmitting}
             />
@@ -121,7 +121,7 @@ export function BugReportPopup() {
                 onClick={handleClose}
                 variant="ghost"
                 size="sm"
-                className="text-xs text-slate-400 hover:text-slate-200"
+                className="text-xs text-slate-400 hover:text-slate-200 h-8"
                 disabled={isSubmitting}
               >
                 Cancel
@@ -130,15 +130,15 @@ export function BugReportPopup() {
                 type="submit"
                 size="sm"
                 disabled={!feedback.trim() || isSubmitting}
-                className="text-xs bg-gradient-to-r from-blue-500 to-cyan-500 text-white hover:shadow-lg hover:shadow-cyan-500/50 transition-all"
+                className="text-xs bg-gradient-to-r from-blue-500 to-cyan-500 text-white hover:shadow-lg hover:shadow-cyan-500/50 transition-all h-8"
               >
                 {isSubmitting ? "Sending..." : "Submit"}
               </Button>
             </div>
           </form>
         ) : (
-          <div className="text-center py-6 px-2 bg-green-500/10 border border-green-500/30 rounded-lg">
-            <p className="text-sm text-green-400 font-medium">✓ Thanks for your feedback!</p>
+          <div className="text-center py-4 sm:py-6 px-2 bg-green-500/10 border border-green-500/30 rounded-lg">
+            <p className="text-xs sm:text-sm text-green-400 font-medium">✓ Thanks for your feedback!</p>
             <p className="text-xs text-green-400/70 mt-1">We'll review it shortly.</p>
           </div>
         )}

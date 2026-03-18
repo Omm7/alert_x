@@ -17,7 +17,7 @@ export function Footer() {
     
     // Create toast element
     const toast = document.createElement('div');
-    toast.className = 'fixed bottom-6 left-6 z-50 px-6 py-3 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-lg shadow-lg animate-slide-up';
+    toast.className = 'fixed bottom-4 left-4 sm:bottom-6 sm:left-6 z-50 px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-blue-500 to-cyan-500 text-white text-xs sm:text-sm rounded-lg shadow-lg animate-slide-up max-w-xs sm:max-w-sm';
     toast.textContent = message;
     document.body.appendChild(toast);
 

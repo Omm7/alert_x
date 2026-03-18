@@ -67,9 +67,9 @@ export default async function JobsPage({ searchParams }: PageProps) {
   });
 
   return (
-    <div className="mx-auto max-w-7xl space-y-6 px-4 py-10 sm:px-6 lg:px-8">
+    <div className="mx-auto max-w-7xl space-y-6 px-3 sm:px-4 py-8 sm:py-10 md:px-6 lg:px-8">
       <div className="space-y-3">
-        <h1 className="text-3xl font-bold text-slate-900 dark:text-slate-100">Job Listings</h1>
+        <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-slate-100">Job Listings</h1>
         <SearchBar />
       </div>
 
@@ -87,15 +87,15 @@ export default async function JobsPage({ searchParams }: PageProps) {
             <p className="rounded-xl border border-slate-300 bg-slate-50 p-5 text-center text-slate-700 dark:border-slate-700 dark:bg-slate-900/30 dark:text-slate-300 transition-all duration-300 hover:border-slate-400 hover:shadow-md dark:hover:border-slate-600">No jobs found for your filters.</p>
           )}
 
-          <div className="flex items-center justify-between">
-            <p className="text-sm text-slate-700 dark:text-slate-300">
+          <div className="flex items-center justify-between gap-2 flex-wrap">
+            <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300">
               Page {data.page} of {Math.max(data.totalPages, 1)}
             </p>
             <div className="flex gap-2">
-              <Button asChild variant="outline" size="sm" disabled={data.page <= 1}>
+              <Button asChild variant="outline" size="sm" disabled={data.page <= 1} className="text-xs sm:text-sm h-8 sm:h-9">
                 <Link href={`/jobs?page=${Math.max(1, data.page - 1)}`}>Previous</Link>
               </Button>
-              <Button asChild variant="outline" size="sm" disabled={data.page >= data.totalPages}>
+              <Button asChild variant="outline" size="sm" disabled={data.page >= data.totalPages} className="text-xs sm:text-sm h-8 sm:h-9">
                 <Link href={`/jobs?page=${Math.min(data.totalPages || 1, data.page + 1)}`}>Next</Link>
               </Button>
             </div>
