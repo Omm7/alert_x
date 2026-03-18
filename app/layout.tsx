@@ -98,6 +98,10 @@ export const metadata: Metadata = {
   formatDetection: {
     telephone: false,
   },
+  icons: {
+    icon: "/qyvex short logo.png",
+    apple: "/qyvex short logo.png",
+  },
 };
 
 export default function RootLayout({

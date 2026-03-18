@@ -24,15 +24,16 @@ export default async function LoginPage() {
       <div className="w-full max-w-md relative z-10">
         {/* Logo */}
         <div className="text-center mb-8">
-          <Link href="/" className="inline-block hover:scale-105 transition-transform duration-200">
+          <Link href="/" className="inline-flex items-center gap-2 hover:scale-105 transition-transform duration-200 justify-center">
             <Image 
-              src="/qyvex logo.png" 
+              src="/qyvex short logo.png" 
               alt="QYVEX Logo" 
-              width={140} 
+              width={40} 
               height={40} 
               priority 
-              className="object-contain h-12 w-auto"
+              className="object-contain"
             />
+            <span className="text-2xl font-bold tracking-tight bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text text-transparent">QYVEX</span>
           </Link>
           <p className="text-slate-400 text-sm mt-2">Find Your Dream Tech Role</p>
         </div>

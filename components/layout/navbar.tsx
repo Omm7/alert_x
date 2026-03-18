@@ -57,28 +57,15 @@ export function Navbar() {
         <div className="absolute inset-0 bg-black/40 backdrop-blur-xl border-b border-white/5 bg-gradient-to-r from-blue-500/5 to-cyan-500/5 shadow-[0_8px_30px_rgba(0,0,0,0.25)]" />
         <div className="relative mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
           <Link href="/" className="flex items-center gap-2 hover:scale-105 transition-transform duration-200">
-            {/* Short logo for mobile */}
-            <div className="md:hidden">
-              <Image 
-                src="/qyvex short logo.png" 
-                alt="QYVEX Logo" 
-                width={32} 
-                height={32} 
-                priority 
-                className="object-contain"
-              />
-            </div>
-            {/* Full logo for desktop */}
-            <div className="hidden md:block">
-              <Image 
-                src="/qyvex logo.png" 
-                alt="QYVEX Logo" 
-                width={120} 
-                height={32} 
-                priority 
-                className="object-contain"
-              />
-            </div>
+            <Image 
+              src="/qyvex short logo.png" 
+              alt="QYVEX Logo" 
+              width={32} 
+              height={32} 
+              priority 
+              className="object-contain"
+            />
+            <span className="text-lg font-bold tracking-tight bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text text-transparent">QYVEX</span>
           </Link>
           <div className="hidden md:flex items-center gap-4">
             <Button asChild variant="ghost" size="sm" className="text-sm text-gray-300 hover:text-white transition-colors duration-200">
@@ -107,28 +94,15 @@ export function Navbar() {
           href="/" 
           className="flex items-center gap-2 hover:scale-105 transition-transform duration-200"
         >
-          {/* Short logo for mobile */}
-          <div className="md:hidden">
-            <Image 
-              src="/qyvex short logo.png" 
-              alt="QYVEX Logo" 
-              width={32} 
-              height={32} 
-              priority 
-              className="object-contain"
-            />
-          </div>
-          {/* Full logo for desktop */}
-          <div className="hidden md:block">
-            <Image 
-              src="/qyvex logo.png" 
-              alt="QYVEX Logo" 
-              width={120} 
-              height={32} 
-              priority 
-              className="object-contain"
-            />
-          </div>
+          <Image 
+            src="/qyvex short logo.png" 
+            alt="QYVEX Logo" 
+            width={32} 
+            height={32} 
+            priority 
+            className="object-contain"
+          />
+          <span className="text-lg font-bold tracking-tight bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text text-transparent">QYVEX</span>
         </Link>
 
         {/* Desktop Navigation */}
