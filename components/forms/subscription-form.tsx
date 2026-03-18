@@ -4,8 +4,6 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { Button } from "@/components/ui/button";
-import { Select } from "@/components/ui/select";
-import { Input } from "@/components/ui/input";
 import { useLoading } from "@/lib/loading-context";
 
 export function SubscriptionForm() {
@@ -16,7 +14,7 @@ export function SubscriptionForm() {
   const [message, setMessage] = useState<string | null>(null);
   const [messageType, setMessageType] = useState<"success" | "error">("error");
 
-  async function onSubmit(formData: FormData) {
+  async function handleSubscribe() {
     setLoading(true);
     startLoading();
     setMessage(null);
@@ -30,29 +28,24 @@ export function SubscriptionForm() {
       return;
     }
 
-    const payload = {
-      jobCategory: formData.get("jobCategory"),
-      location: formData.get("location"),
-      jobType: formData.get("jobType"),
-    };
-
     try {
       const res = await fetch("/api/subscriptions", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
+        body: JSON.stringify({}),
       });
 
       if (res.ok) {
         setMessageType("success");
-        setMessage("✅ Subscription saved! You'll receive job alerts for your preferences.");
+        setMessage("✅ You're subscribed! Check your email for confirmation.");
       } else {
         setMessageType("error");
-        setMessage("❌ Failed to save subscription. Please try again.");
+        const data = await res.json();
+        setMessage(data.error || "❌ Failed to subscribe. Please try again.");
       }
     } catch (error) {
       setMessageType("error");
-      setMessage("❌ Error saving subscription. Please try again.");
+      setMessage("❌ Error subscribing. Please try again.");
     } finally {
       setLoading(false);
       stopLoading();
@@ -62,35 +55,26 @@ export function SubscriptionForm() {
   const isLoading = status === "loading" || loading;
 
   return (
-    <form action={onSubmit} className="space-y-3">
-      <Select name="jobCategory" required disabled={isLoading}>
-        <option value="SOFTWARE_ENGINEERING">Software Engineering</option>
-        <option value="DATA_SCIENCE">Data Science</option>
-        <option value="AI_ML">AI / ML</option>
-        <option value="CYBERSECURITY">Cybersecurity</option>
-        <option value="INTERNSHIP">Internships</option>
-        <option value="OFF_CAMPUS_DRIVE">Off Campus Drives</option>
-      </Select>
-      <Input 
-        name="location" 
-        placeholder="Preferred location or Remote" 
-        required 
-        disabled={isLoading}
-      />
-      <Select name="jobType" required disabled={isLoading}>
-        <option value="FULL_TIME">Full Time</option>
-        <option value="INTERN">Internship</option>
-        <option value="OFF_CAMPUS">Off Campus</option>
-        <option value="CONTRACT">Contract</option>
-      </Select>
-      <Button disabled={isLoading} className="w-full">
-        {isLoading ? "Processing..." : status === "unauthenticated" ? "Login to Subscribe" : "Subscribe to Alerts"}
+    <div className="space-y-4">
+      <div className="space-y-3">
+        <p className="text-base text-slate-700 dark:text-slate-300 leading-relaxed">
+          📬 Never miss an opportunity! Get job alerts directly in your inbox as soon as new positions are posted. Be the first to apply and land your dream role.
+        </p>
+      </div>
+      
+      <Button 
+        onClick={handleSubscribe}
+        disabled={isLoading} 
+        className="w-full py-6 text-lg font-semibold"
+      >
+        {isLoading ? "Processing..." : status === "unauthenticated" ? "Login to Subscribe" : "Subscribe to Get Job Alerts"}
       </Button>
+
       {message && (
-        <p className={`text-sm ${messageType === "success" ? "text-green-600 dark:text-green-400" : "text-red-600 dark:text-red-400"}`}>
+        <p className={`text-sm text-center ${messageType === "success" ? "text-green-600 dark:text-green-400" : "text-red-600 dark:text-red-400"}`}>
           {message}
         </p>
       )}
-    </form>
+    </div>
   );
 }

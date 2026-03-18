@@ -141,14 +141,9 @@ export default async function Home() {
         </div>
       </section>
 
-      <section id="subscribe" className="rounded-2xl border border-cyan-500/30 dark:border-cyan-500/40 bg-gradient-to-r from-blue-600/10 via-cyan-600/10 to-blue-600/10 dark:from-blue-600/20 dark:via-cyan-600/20 dark:to-blue-600/20 backdrop-blur-sm p-8 lg:p-12 shadow-xl dark:shadow-cyan-500/20 lg:grid-cols-2 gap-8 max-w-4xl mx-auto animate-scale-in">
-        <div className="space-y-4">
-          <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent dark:from-blue-300 dark:to-cyan-300">Get Instant Job Alerts</h2>
-          <p className="text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
-            Set your preferences once and receive curated job opportunities delivered to your inbox instant as they get posted.
-          </p>
-        </div>
-        <div>
+      <section id="subscribe" className="rounded-2xl border border-cyan-500/30 dark:border-cyan-500/40 bg-gradient-to-r from-blue-600/10 via-cyan-600/10 to-blue-600/10 dark:from-blue-600/20 dark:via-cyan-600/20 dark:to-blue-600/20 backdrop-blur-sm p-8 lg:p-12 shadow-xl dark:shadow-cyan-500/20 gap-8 max-w-4xl mx-auto animate-scale-in">
+        <div className="space-y-6">
+          <h2 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent dark:from-blue-300 dark:to-cyan-300">Get Instant Job Alerts</h2>
           <SubscriptionForm />
         </div>
       </section>

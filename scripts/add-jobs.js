@@ -119,13 +119,8 @@ async function addJobsWithAlerts() {
 
       console.log(`   ✅ Job created with ID: ${job.id}`);
 
-      // Step 3: Find matching subscribers
-      const subscribers = await prisma.subscription.findMany({
-        where: {
-          jobCategory: jobData.category,
-          location: jobData.location,
-          jobType: jobData.jobType,
-        },
+      // Step 3: Find ALL subscribers (not filtered by preferences)
+      const allSubscribers = await prisma.subscription.findMany({
         include: {
           user: {
             select: {
@@ -137,16 +132,16 @@ async function addJobsWithAlerts() {
       });
 
       console.log(
-        `   📧 Found ${subscribers.length} matching subscribers\n`
+        `   📧 Found ${allSubscribers.length} total subscribers\n`
       );
 
-      // Step 4: Send email alerts to all matching subscribers
-      if (subscribers.length > 0) {
-        console.log(`   🔔 Sending email alerts to:`);
+      // Step 4: Send email alerts to ALL subscribers
+      if (allSubscribers.length > 0) {
+        console.log(`   🔔 Sending job alert emails to:`);
         let emailsSent = 0;
         let emailsFailed = 0;
 
-        for (const subscription of subscribers) {
+        for (const subscription of allSubscribers) {
           const jobUrl = `${APP_URL}/jobs/${job.id}`;
           const unsubscribeLink = `${APP_URL}/api/unsubscribe?id=${subscription.id}`;
 
@@ -156,7 +151,7 @@ async function addJobsWithAlerts() {
               <!-- Header -->
               <div style="background: linear-gradient(135deg, #2563EB 0%, #1e40af 100%); padding: 30px; border-radius: 12px 12px 0 0; color: white;">
                 <h2 style="margin: 0;">🎯 New Job Alert!</h2>
-                <p style="margin: 10px 0 0 0; opacity: 0.9;">A job matching your preferences just posted</p>
+                <p style="margin: 10px 0 0 0; opacity: 0.9;">A new job opportunity just posted</p>
               </div>
 
               <!-- Content -->
@@ -164,7 +159,7 @@ async function addJobsWithAlerts() {
                 
                 <p style="font-size: 16px; margin-bottom: 25px;">
                   Hi <strong>${subscription.user.name}</strong>,<br><br>
-                  We found a job that matches your interests!
+                  We found a job opportunity that might interest you!
                 </p>
 
                 <!-- Job Details Card -->
@@ -197,8 +192,7 @@ async function addJobsWithAlerts() {
 
                 <!-- Unsubscribe Link -->
                 <p style="color: #6b7280; font-size: 13px; line-height: 1.6; margin-top: 25px; padding-top: 20px; border-top: 1px solid #e5e7eb;">
-                  You received this email because you subscribed to job alerts for <strong>${jobData.jobType}</strong> roles in <strong>${jobData.location}</strong>.
-                  <br><a href="${unsubscribeLink}" style="color: #2563EB; text-decoration: none;">Unsubscribe from alerts</a>
+                  <a href="${unsubscribeLink}" style="color: #2563EB; text-decoration: none;">Unsubscribe from job alerts</a>
                 </p>
 
                 <p style="color: #9ca3af; font-size: 12px; text-align: center; margin: 15px 0 0 0;">
