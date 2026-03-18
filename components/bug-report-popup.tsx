@@ -80,8 +80,8 @@ export function BugReportPopup() {
 
   // Expanded state - full form
   return (
-    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 w-[calc(100vw-2rem)] sm:w-96 max-w-md animate-slide-up">
-      <div className="rounded-lg border border-slate-800 bg-gradient-to-br from-slate-900/95 to-slate-950/95 backdrop-blur-xl shadow-2xl p-3 sm:p-4 space-y-4">
+    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 w-[calc(100vw-2rem)] sm:w-96 max-w-md animate-slide-up pointer-events-auto">
+      <div className="rounded-lg border border-slate-800 bg-gradient-to-br from-slate-900/95 to-slate-950/95 backdrop-blur-xl shadow-2xl p-3 sm:p-4 space-y-4 max-h-[calc(100vh-200px)] overflow-y-auto">
         {/* Header */}
         <div className="flex items-start justify-between gap-2 sm:gap-3">
           <div className="flex items-center gap-2">
