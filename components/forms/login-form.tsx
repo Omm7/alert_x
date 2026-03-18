@@ -4,8 +4,10 @@ import { useState, useEffect } from "react";
 import { signIn, useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { Eye, EyeOff } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { AnimatedButton } from "@/components/ui/animated-button";
+import { Button } from "@/components/ui/button";
 import { useLoading } from "@/lib/loading-context";
 
 export function LoginForm() {
@@ -15,6 +17,7 @@ export function LoginForm() {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [isCheckingSession, setIsCheckingSession] = useState(true);
+  const [showPassword, setShowPassword] = useState(false);
 
   // Client-side redirect if already logged in
   useEffect(() => {
@@ -81,17 +84,72 @@ export function LoginForm() {
 
   return (
     <form action={handleSubmit} className="space-y-5">
-      <Input name="email" type="email" placeholder="Email" required/>
-      <Input name="password" type="password" placeholder="Password" required/>
-      <AnimatedButton className="w-full min-h-11" loading={loading}>
-        Login
+      <div className="space-y-2">
+        <label htmlFor="email" className="text-sm font-semibold text-slate-700 dark:text-slate-300">
+          Email Address
+        </label>
+        <Input
+          id="email"
+          name="email"
+          type="email"
+          placeholder="you@example.com"
+          required
+          className="h-11 bg-slate-50 dark:bg-slate-900/50 border-slate-200 dark:border-slate-700 focus:ring-cyan-500 focus:border-cyan-500"
+        />
+      </div>
+
+      <div className="space-y-2">
+        <label htmlFor="password" className="text-sm font-semibold text-slate-700 dark:text-slate-300">
+          Password
+        </label>
+        <div className="relative">
+          <input
+            id="password"
+            name="password"
+            type={showPassword ? "text" : "password"}
+            placeholder="••••••••"
+            required
+            className="w-full h-11 px-4 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all text-slate-900 dark:text-slate-100"
+          />
+          <Button
+            type="button"
+            variant="ghost"
+            size="sm"
+            onClick={() => setShowPassword(!showPassword)}
+            className="absolute right-2 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-700 dark:hover:text-slate-300"
+          >
+            {showPassword ? (
+              <EyeOff className="size-5" />
+            ) : (
+              <Eye className="size-5" />
+            )}
+          </Button>
+        </div>
+      </div>
+
+      <AnimatedButton className="w-full min-h-11 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white font-semibold" loading={loading}>
+        Sign In
       </AnimatedButton>
-      {error && <p className="text-sm text-red-500 font-semibold text-center">{error}</p>}
-      <p className="text-center text-sm">
-        <Link href="/auth/forgot-password" className="text-blue-600 dark:text-cyan-400 hover:underline font-semibold">
-          Forgot password?
-        </Link>
-      </p>
+
+      {error && (
+        <div className="p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800/50 rounded-lg">
+          <p className="text-sm text-red-600 dark:text-red-400 font-semibold">{error}</p>
+        </div>
+      )}
+
+      <div className="border-t border-slate-200 dark:border-slate-700 pt-5 space-y-4">
+        <p className="text-center text-sm text-slate-600 dark:text-slate-400">
+          Don't have an account?{" "}
+          <Link href="/auth/signup" className="text-blue-600 dark:text-cyan-400 hover:underline font-semibold">
+            Sign up
+          </Link>
+        </p>
+        <p className="text-center text-sm">
+          <Link href="/auth/forgot-password" className="text-blue-600 dark:text-cyan-400 hover:underline font-semibold">
+            Forgot password?
+          </Link>
+        </p>
+      </div>
     </form>
   );
 }
