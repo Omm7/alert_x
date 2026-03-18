@@ -1,9 +1,51 @@
 require('dotenv').config();
 
 const { PrismaClient } = require('@prisma/client');
+const { Resend } = require('resend');
 const { getCompanyLogoFromBrandfetch } = require('./brandfetch-utils');
 
 const prisma = new PrismaClient();
+const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
+const DEFAULT_FROM = process.env.RESEND_FROM_EMAIL || "Qyvex <alerts@qyvex.tech>";
+const FALLBACK_FROM = "Qyvex <onboarding@resend.dev>";
+const APP_URL = process.env.APP_URL || "https://qyvex.tech";
+
+// Email sending function
+async function sendJobAlertEmail(emailPayload) {
+  if (!resend) {
+    console.log(`   ⚠️  RESEND_API_KEY not set - skipping email to ${emailPayload.to}`);
+    return false;
+  }
+
+  try {
+    const response = await resend.emails.send({
+      from: DEFAULT_FROM,
+      to: emailPayload.to,
+      subject: emailPayload.subject,
+      html: emailPayload.html,
+    });
+
+    if (response.error) {
+      // Try fallback email address
+      const fallbackResponse = await resend.emails.send({
+        from: FALLBACK_FROM,
+        to: emailPayload.to,
+        subject: emailPayload.subject,
+        html: emailPayload.html,
+      });
+
+      if (fallbackResponse.error) {
+        console.log(`   ❌ Failed to send email to ${emailPayload.to}:`, fallbackResponse.error);
+        return false;
+      }
+    }
+
+    return true;
+  } catch (error) {
+    console.log(`   ⚠️  Error sending email to ${emailPayload.to}:`, error.message);
+    return false;
+  }
+}
 
 // Job data - copy from lib/jobs-to-add.ts
 const NEW_JOBS = [
@@ -98,13 +140,91 @@ async function addJobsWithAlerts() {
         `   📧 Found ${subscribers.length} matching subscribers\n`
       );
 
-      // Step 4: Log subscriber emails (email sending would require Resend API integration)
+      // Step 4: Send email alerts to all matching subscribers
       if (subscribers.length > 0) {
-        console.log(`   🔔 Email alerts will be sent to:`);
+        console.log(`   🔔 Sending email alerts to:`);
+        let emailsSent = 0;
+        let emailsFailed = 0;
+
         for (const subscription of subscribers) {
-          console.log(`      📬 ${subscription.user.email} (${subscription.user.name})`);
+          const jobUrl = `${APP_URL}/jobs/${job.id}`;
+          const unsubscribeLink = `${APP_URL}/api/unsubscribe?id=${subscription.id}`;
+
+          const emailHtml = `
+            <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
+              
+              <!-- Header -->
+              <div style="background: linear-gradient(135deg, #2563EB 0%, #1e40af 100%); padding: 30px; border-radius: 12px 12px 0 0; color: white;">
+                <h2 style="margin: 0;">🎯 New Job Alert!</h2>
+                <p style="margin: 10px 0 0 0; opacity: 0.9;">A job matching your preferences just posted</p>
+              </div>
+
+              <!-- Content -->
+              <div style="background: #f9fafb; padding: 30px; border-radius: 0 0 12px 12px;">
+                
+                <p style="font-size: 16px; margin-bottom: 25px;">
+                  Hi <strong>${subscription.user.name}</strong>,<br><br>
+                  We found a job that matches your interests!
+                </p>
+
+                <!-- Job Details Card -->
+                <div style="background: white; padding: 20px; border-left: 4px solid #2563EB; margin-bottom: 25px; border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                  <h3 style="margin: 0 0 15px 0; color: #1f2937; font-size: 20px;">${job.title}</h3>
+                  
+                  <div style="margin-bottom: 20px;">
+                    <p style="margin: 8px 0; color: #6b7280;"><strong>Company:</strong> ${jobData.companyName}</p>
+                    <p style="margin: 8px 0; color: #6b7280;"><strong>Location:</strong> ${jobData.location}</p>
+                    <p style="margin: 8px 0; color: #6b7280;"><strong>Salary:</strong> ${jobData.salary}</p>
+                    <p style="margin: 8px 0; color: #6b7280;"><strong>Job Type:</strong> ${jobData.jobType}</p>
+                  </div>
+
+                  <div style="background: #f3f4f6; padding: 15px; border-radius: 4px; margin-bottom: 20px;">
+                    <p style="margin: 0; color: #4b5563; line-height: 1.6; font-size: 14px;">
+                      ${jobData.description.substring(0, 200)}...
+                    </p>
+                  </div>
+                </div>
+
+                <!-- CTA Buttons -->
+                <div style="text-align: center; margin-bottom: 25px;">
+                  <a href="${jobData.applyLink}" style="display: inline-block; padding: 14px 32px; background: linear-gradient(135deg, #2563EB 0%, #1e40af 100%); color: white; text-decoration: none; border-radius: 8px; font-weight: 600; margin-right: 10px; margin-bottom: 10px;">
+                    ✅ Apply Now
+                  </a>
+                  <a href="${jobUrl}" style="display: inline-block; padding: 14px 32px; background: #e5e7eb; color: #374151; text-decoration: none; border-radius: 8px; font-weight: 600;">
+                    📖 View Details
+                  </a>
+                </div>
+
+                <!-- Unsubscribe Link -->
+                <p style="color: #6b7280; font-size: 13px; line-height: 1.6; margin-top: 25px; padding-top: 20px; border-top: 1px solid #e5e7eb;">
+                  You received this email because you subscribed to job alerts for <strong>${jobData.jobType}</strong> roles in <strong>${jobData.location}</strong>.
+                  <br><a href="${unsubscribeLink}" style="color: #2563EB; text-decoration: none;">Unsubscribe from alerts</a>
+                </p>
+
+                <p style="color: #9ca3af; font-size: 12px; text-align: center; margin: 15px 0 0 0;">
+                  © 2026 Qyvex. All rights reserved.
+                </p>
+
+              </div>
+
+            </div>
+          `;
+
+          const emailSent = await sendJobAlertEmail({
+            to: subscription.user.email,
+            subject: `🎯 New Job Alert: ${job.title} at ${jobData.companyName}`,
+            html: emailHtml,
+          });
+
+          if (emailSent) {
+            console.log(`      ✅ Email sent to ${subscription.user.email}`);
+            emailsSent++;
+          } else {
+            console.log(`      ❌ Failed to send email to ${subscription.user.email}`);
+            emailsFailed++;
+          }
         }
-        console.log("");
+        console.log(`   📊 Email results: ${emailsSent} sent, ${emailsFailed} failed\n`);
       }
 
       successCount++;
