@@ -135,6 +135,7 @@ enum JobType {
   INTERN
   CONTRACT
   OFF_CAMPUS
+  ALL
 }
 
 enum ExperienceLevel {
@@ -150,4 +151,5 @@ enum JobCategory {
   CYBERSECURITY
   INTERNSHIP
   OFF_CAMPUS_DRIVE
+  ALL
 }

@@ -38,23 +38,26 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Get the user details from the session
+    const userEmail = auth.session.user.email || "";
+    const userName = auth.session.user.name || "User";
+
     // Create subscription (simple global subscription)
     const subscription = await prisma.subscription.create({
       data: {
         userId: auth.session.user.id,
-        jobCategory: "ALL",
+        jobCategory: "ALL" as any,
         location: "ALL",
-        jobType: "ALL",
+        jobType: "ALL" as any,
       },
-      include: { user: true },
     });
 
     // Send confirmation email
-    if (resend && subscription.user.email) {
+    if (resend && userEmail) {
       try {
         await resend.emails.send({
           from: DEFAULT_FROM,
-          to: subscription.user.email,
+          to: userEmail,
           subject: "🎉 Welcome to Qyvex Job Alerts!",
           html: `
             <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
@@ -68,7 +71,7 @@ export async function POST(request: NextRequest) {
               <div style="background: #f9fafb; padding: 30px; border-radius: 0 0 12px 12px;">
                 
                 <p style="font-size: 16px; margin-bottom: 25px;">
-                  Hi <strong>${subscription.user.name}</strong>,<br><br>
+                  Hi <strong>${userName}</strong>,<br><br>
                   Thank you for subscribing to Qyvex job alerts! 🙏
                 </p>
 
