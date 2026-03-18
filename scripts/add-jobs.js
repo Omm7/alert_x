@@ -50,19 +50,19 @@ async function sendJobAlertEmail(emailPayload) {
 // Job data - copy from lib/jobs-to-add.ts
 const NEW_JOBS = [
   {
-    title: "Technical Support Engineer",
-    companyName: "Salesforce",
-    location: "Bangalore / Hyderabad",
+    title: "Operations Associate (Merchant KYC)",
+    companyName: "PhonePe",
+    location: "Bangalore",
     salary: "Not Disclosed",
     jobType: "FULL_TIME",
-    category: "SOFTWARE_ENGINEERING",
+    category: "OFF_CAMPUS_DRIVE",
     courseType: "BTECH",
     experienceLevel: "ENTRY",
-    description: "Join Salesforce as a Technical Support Engineer to handle customer issues, troubleshoot complex problems, and support the AI-powered CRM cloud platform.",
-    requirements: "SQL, Data Modeling, JavaScript, Python, Apex, Troubleshooting, Debugging, CRM Basics, Cloud Basics, Generative AI (LLMs, RAG), B.Tech/CS or equivalent",
-    responsibilities: "Resolve customer issues, Troubleshoot complex technical problems, Support Salesforce CRM platform, Collaborate with internal teams",
-    benefits: "Exposure to AI and cloud technologies, High growth opportunities, Industry-leading platform experience, Learning and development",
-    applyLink: "https://careers.salesforce.com/en/jobs/jr323181/technical-support-engineer/"
+    description: "Join PhonePe as an Operations Associate to handle merchant KYC verification, ensure compliance, detect fraud patterns, and maintain high accuracy in verification processes.",
+    requirements: "Attention to Detail, Document Verification, Compliance, Accuracy, English Reading, Regional Language, Any Graduate",
+    responsibilities: "Validate KYC documents, Ensure compliance, Detect fraud patterns, Maintain verification accuracy",
+    benefits: "Opportunity in FinTech industry, Hands-on operational experience, Career growth, Learning opportunities, Rotational shifts exposure",
+    applyLink: "https://job-boards.greenhouse.io/embed/job_app?for=phonepe&gh_src=961e65dc3us&token=7659792003"
   },
 ];
 
