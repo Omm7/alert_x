@@ -67,6 +67,7 @@ export function JobListingCard({ job }: JobListingCardProps) {
                 width={56}
                 height={56}
                 loading="lazy"
+                unoptimized
               />
             </div>
             <div className="flex-1 min-w-0">

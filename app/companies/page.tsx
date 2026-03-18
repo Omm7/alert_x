@@ -47,7 +47,15 @@ export default async function CompaniesPage() {
         {companies.map((company) => (
           <Card key={company.id} className="space-y-3">
             <div className="flex items-center gap-3">
-              <Image src={company.logoUrl} alt={company.name} className="h-12 w-12 rounded-lg" width={48} height={48} loading="lazy" />
+              <Image 
+                src={company.logoUrl} 
+                alt={company.name} 
+                className="h-12 w-12 rounded-lg" 
+                width={48} 
+                height={48} 
+                loading="lazy"
+                unoptimized
+              />
               <div>
                 <h3 className="font-semibold text-slate-900 dark:text-slate-100">{company.name}</h3>
                 <p className="text-sm text-slate-700 dark:text-slate-300">{company._count.jobs} open roles</p>

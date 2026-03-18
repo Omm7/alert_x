@@ -21,29 +21,25 @@ export interface JobData {
   responsibilities: string;
   benefits: string;
   applyLink: string;
+  website?: string; // Optional: company website URL for better logo detection
 }
 
 export const NEW_JOBS: JobData[] = [
-  // ✅ EXAMPLE JOB - DELETE THIS AND ADD YOUR OWN
   {
-    title: "Technical Intern",
-    companyName: "Agilitz Technologies",
-    location: "Bangalore / Bhubaneswar",
-    salary: "₹15,000 – ₹20,000 / month",
-    jobType: "INTERN",
-    category: "SOFTWARE_ENGINEERING",
+    title: "Graduate Trainee",
+    companyName: "Calix",
+    location: "Bangalore (Hybrid)",
+    salary: "Not Disclosed",
+    jobType: "FULL_TIME",
+    category: "CYBERSECURITY",
     courseType: "BTECH",
     experienceLevel: "ENTRY",
-    description:
-      "Join Agilitz Technologies as a Technical Intern and gain hands-on experience with modern technologies. Work with Java, JavaScript, Python, .NET or C++ in a collaborative environment. You'll be mentored by experienced developers and contribute to real projects.",
-    requirements:
-      "Java / JavaScript / Python / .NET / C++ / C, Programming Fundamentals & OOP, Basic SQL / Database knowledge, Minimum 6.5 CGPA, No active backlogs",
-    responsibilities:
-      "Develop and maintain software features, participate in code reviews, write clean and efficient code, collaborate with team members, learn industry best practices",
-    benefits:
-      "Internship stipend, Performance-based full-time offer, Flexible work hours, Certificate upon completion",
-    applyLink: "https://agilitz.com/careers/internship"
+    description: "Join Calix as a Graduate Trainee to work on cybersecurity, threat detection, and network security analysis in a hybrid environment.",
+    requirements: "Networking (TCP/IP, OSI), Cybersecurity Basics, Python (Basic), Linux, Windows, Packet Analysis (Wireshark), 2024/2025 Batch (CS/IT/Cyber Security/Networking)",
+    responsibilities: "Threat detection, Network security analysis, IDS/NIDS monitoring, Cyber threat research",
+    benefits: "Hands-on cybersecurity experience, Industry exposure, Learning opportunities, Career growth",
+    applyLink: "https://calix.wd1.myworkdayjobs.com/en-US/ExternalInternational/job/Bangalore/Graduate-Trainee_R-11540"
   },
 
-  // 👇 ADD YOUR OWN JOBS BELOW (Paste from ChatGPT here)
+  // 👇 ADD MORE JOBS BELOW
 ];
