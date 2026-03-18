@@ -6,6 +6,7 @@ import { prisma } from "@/lib/db";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { MapPin, DollarSign, Briefcase, GraduationCap, Building2 } from "lucide-react";
+import { JobActions } from "@/components/jobs/job-actions";
 
 export const dynamic = "force-dynamic";
 
@@ -188,14 +189,7 @@ export default async function JobDetailsPage({ params }: Props) {
       </Card>
 
       {/* Action Buttons */}
-      <div className="flex gap-2">
-        <Button variant="outline" className="flex-1">
-          💾 Save Job
-        </Button>
-        <Button variant="outline" className="flex-1">
-          📤 Share
-        </Button>
-      </div>
+      <JobActions jobId={job.id} applyLink={job.applyLink} jobTitle={job.title} />
 
       {/* Related Jobs */}
       {relatedJobs.length > 0 && (
