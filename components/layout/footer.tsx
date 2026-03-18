@@ -1,7 +1,32 @@
+"use client";
+
 import Link from "next/link";
 import { Github, Linkedin, Twitter } from "lucide-react";
+import { useEffect, useState } from "react";
 
 export function Footer() {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const showSocialMessage = () => {
+    // Show toast notification
+    const message = "We're currently working on adding our social media links. Stay tuned!";
+    
+    // Create toast element
+    const toast = document.createElement('div');
+    toast.className = 'fixed bottom-6 left-6 z-50 px-6 py-3 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-lg shadow-lg animate-slide-up';
+    toast.textContent = message;
+    document.body.appendChild(toast);
+
+    // Auto-remove after 4 seconds
+    setTimeout(() => {
+      toast.remove();
+    }, 4000);
+  };
+
   return (
     <footer className="mt-auto border-t border-slate-200/40 bg-gradient-to-b from-slate-50/50 to-slate-100/30 py-12 dark:border-slate-700/30 dark:bg-gradient-to-b dark:from-slate-950/50 dark:to-slate-900/30">
       <div className="mx-auto flex max-w-7xl flex-col gap-8 px-4 sm:px-6 lg:px-8">
@@ -22,15 +47,27 @@ export function Footer() {
           <div className="space-y-3">
             <p className="font-semibold text-slate-900 dark:text-slate-100">Follow Us</p>
             <div className="flex items-center gap-4">
-              <a href="https://github.com" target="_blank" rel="noreferrer" aria-label="GitHub" className="p-2 rounded-lg text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-cyan-400 hover:bg-blue-50 dark:hover:bg-cyan-500/10 transition-all duration-300">
+              <button
+                onClick={showSocialMessage}
+                aria-label="GitHub"
+                className="p-2 rounded-lg text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-cyan-400 hover:bg-blue-50 dark:hover:bg-cyan-500/10 transition-all duration-300 cursor-pointer"
+              >
                 <Github className="size-5" />
-              </a>
-              <a href="https://x.com" target="_blank" rel="noreferrer" aria-label="Twitter" className="p-2 rounded-lg text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-cyan-400 hover:bg-blue-50 dark:hover:bg-cyan-500/10 transition-all duration-300">
+              </button>
+              <button
+                onClick={showSocialMessage}
+                aria-label="Twitter"
+                className="p-2 rounded-lg text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-cyan-400 hover:bg-blue-50 dark:hover:bg-cyan-500/10 transition-all duration-300 cursor-pointer"
+              >
                 <Twitter className="size-5" />
-              </a>
-              <a href="https://linkedin.com" target="_blank" rel="noreferrer" aria-label="LinkedIn" className="p-2 rounded-lg text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-cyan-400 hover:bg-blue-50 dark:hover:bg-cyan-500/10 transition-all duration-300">
+              </button>
+              <button
+                onClick={showSocialMessage}
+                aria-label="LinkedIn"
+                className="p-2 rounded-lg text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-cyan-400 hover:bg-blue-50 dark:hover:bg-cyan-500/10 transition-all duration-300 cursor-pointer"
+              >
                 <Linkedin className="size-5" />
-              </a>
+              </button>
             </div>
           </div>
         </div>
