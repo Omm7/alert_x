@@ -50,19 +50,19 @@ async function sendJobAlertEmail(emailPayload) {
 // Job data - copy from lib/jobs-to-add.ts
 const NEW_JOBS = [
   {
-    title: "Data Engineer",
-    companyName: "Cornerstone",
-    location: "Hyderabad",
+     title: "Data Engineer I",
+    companyName: "Cencora",
+    location: "Pune",
     salary: "Not Disclosed",
     jobType: "FULL_TIME",
     category: "DATA_SCIENCE",
     courseType: "BTECH",
     experienceLevel: "ENTRY",
-    description: "Join Cornerstone as a Data Engineer to build and maintain data pipelines, manage ETL processes, and support analytics and machine learning workflows.",
-    requirements: "SQL, Data Modeling, Python, Java, Scala, ETL, Data Pipelines, Airflow, Snowflake, dbt, AWS, Azure, GCP, Bachelor's in CS/IT/Engineering",
-    responsibilities: "Build data pipelines, Manage ETL processes, Work with cloud platforms, Support analytics and ML workflows",
-    benefits: "Hands-on data engineering experience, Exposure to modern data tools, Career growth, Industry-level projects",
-    applyLink: "https://cornerstone.csod.com/ux/ats/careersite/2/home/requisition/11015?c=cornerstone&sq=Data%20Engineer"
+    description: "Join Cencora as a Data Engineer I to work on data analysis, build analytics models, and develop data-driven solutions for business insights.",
+    requirements: "SQL, Python, R, Data Analysis, Data Modeling, Data Visualization, Power BI, Tableau, Big Data, Analytics, Problem Solving, Bachelor's in CS/IT/Statistics",
+    responsibilities: "Analyze data, Build analytics models, Develop data-driven solutions, Support business insights",
+    benefits: "Hands-on experience in data analytics and engineering, Exposure to modern data tools, Career growth opportunities, Industry-level projects",
+    applyLink: "https://careers.cencora.com/us/en/job/CHKCENUSR264572EXTERNALENUS/Data-Engineer-I-Data-Engineering-2"
   },
 ];
 
