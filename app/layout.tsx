@@ -100,8 +100,11 @@ export const metadata: Metadata = {
     telephone: false,
   },
   icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon.ico",
+    icon: [
+      { url: "/qyvex short logo.png", type: "image/png", sizes: "32x32" },
+      { url: "/qyvex short logo.png", type: "image/png", sizes: "192x192" },
+    ],
+    shortcut: "/qyvex short logo.png",
     apple: "/qyvex short logo.png",
   },
 };
@@ -114,7 +117,9 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" type="image/png" href="/qyvex short logo.png" sizes="32x32" />
+        <link rel="icon" type="image/png" href="/qyvex short logo.png" sizes="192x192" />
+        <link rel="shortcut icon" type="image/png" href="/qyvex short logo.png" />
         <link rel="apple-touch-icon" href="/qyvex short logo.png" />
       </head>
       <body className={`${jakarta.variable} min-h-screen antialiased`}>
