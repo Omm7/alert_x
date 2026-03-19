@@ -1,13 +1,44 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
 import { Resend } from 'resend';
-import { getCompanyLogoFromBrandfetch } from '@/scripts/brandfetch-utils';
 
 const prisma = new PrismaClient();
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 const DEFAULT_FROM = process.env.RESEND_FROM_EMAIL || "Qyvex <alerts@qyvex.tech>";
 const FALLBACK_FROM = "Qyvex <onboarding@resend.dev>";
 const APP_URL = process.env.APP_URL || "https://qyvex.tech";
+
+// Fetch logo from Brandfetch
+async function getCompanyLogoFromBrandfetch(companyName: string, website?: string): Promise<string> {
+  try {
+    const query = website ? `domain:${new URL(website).hostname}` : companyName;
+    const response = await fetch(`https://api.brandfetch.io/v2/brands/search?q=${encodeURIComponent(query)}`, {
+      headers: {
+        'Authorization': `Bearer ${process.env.BRANDFETCH_API_KEY || ''}`,
+      },
+    });
+
+    if (!response.ok) {
+      console.log(`   ⚠️  Brandfetch API error: ${response.status}`);
+      return `https://via.placeholder.com/150?text=${encodeURIComponent(companyName)}`;
+    }
+
+    const data = await response.json();
+    if (data.brands && data.brands.length > 0) {
+      const logo = data.brands[0].icon;
+      if (logo) {
+        console.log(`   ✅ Logo fetched from Brandfetch: ${logo}`);
+        return logo;
+      }
+    }
+
+    console.log(`   ⚠️  No logo found in Brandfetch, using placeholder`);
+    return `https://via.placeholder.com/150?text=${encodeURIComponent(companyName)}`;
+  } catch (error: any) {
+    console.log(`   ⚠️  Error fetching logo: ${error.message}`);
+    return `https://via.placeholder.com/150?text=${encodeURIComponent(companyName)}`;
+  }
+}
 
 // Email sending function
 async function sendJobAlertEmail(emailPayload: any) {
@@ -17,6 +48,8 @@ async function sendJobAlertEmail(emailPayload: any) {
   }
 
   try {
+    console.log(`   📤 Attempting to send email to ${emailPayload.to}...`);
+    
     const response = await resend.emails.send({
       from: DEFAULT_FROM,
       to: emailPayload.to,
@@ -25,6 +58,9 @@ async function sendJobAlertEmail(emailPayload: any) {
     });
 
     if (response.error) {
+      console.log(`   ❌ Resend error (trying fallback):`, response.error);
+      
+      // Try fallback email address
       const fallbackResponse = await resend.emails.send({
         from: FALLBACK_FROM,
         to: emailPayload.to,
@@ -33,11 +69,15 @@ async function sendJobAlertEmail(emailPayload: any) {
       });
 
       if (fallbackResponse.error) {
-        console.log(`   ❌ Failed to send email to ${emailPayload.to}:`, fallbackResponse.error);
+        console.log(`   ❌ Fallback also failed:`, fallbackResponse.error);
         return false;
       }
+      
+      console.log(`   ✅ Email sent via fallback to ${emailPayload.to}`);
+      return true;
     }
 
+    console.log(`   ✅ Email sent successfully to ${emailPayload.to}. ID: ${response.data?.id}`);
     return true;
   } catch (error: any) {
     console.log(`   ⚠️  Error sending email to ${emailPayload.to}:`, error.message);
