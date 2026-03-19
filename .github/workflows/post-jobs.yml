@@ -1,0 +1,47 @@
+name: Post New Jobs
+
+on:
+  workflow_dispatch:
+    inputs:
+      jobs_json:
+        description: 'Jobs data as JSON (or use default)'
+        required: false
+        default: '[]'
+
+jobs:
+  post-jobs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Post Jobs via API
+        run: |
+          # Read jobs from file or use input
+          JOBS_JSON='${{ github.event.inputs.jobs_json }}'
+          
+          if [ "$JOBS_JSON" = "[]" ] || [ -z "$JOBS_JSON" ]; then
+            # Use default Cencora job
+            JOBS_JSON='[{
+              "title": "Data Engineer I",
+              "companyName": "Cencora",
+              "website": "https://www.cencora.com",
+              "location": "Pune",
+              "salary": "Not Disclosed",
+              "jobType": "FULL_TIME",
+              "category": "DATA_SCIENCE",
+              "courseType": "BTECH",
+              "experienceLevel": "ENTRY",
+              "description": "Join Cencora as a Data Engineer I to work on data analysis, build analytics models, and develop data-driven solutions for business insights.",
+              "requirements": "SQL, Python, R, Data Analysis, Data Modeling, Data Visualization, Power BI, Tableau, Big Data, Analytics, Problem Solving, Bachelor'"'"'s in CS/IT/Statistics",
+              "responsibilities": "Analyze data, Build analytics models, Develop data-driven solutions, Support business insights",
+              "benefits": "Hands-on experience in data analytics and engineering, Exposure to modern data tools, Career growth opportunities, Industry-level projects",
+              "applyLink": "https://careers.cencora.com/us/en/job/CHKCENUSR264572EXTERNALENUS/Data-Engineer-I-Data-Engineering-2"
+            }]'
+          fi
+          
+          curl -X POST https://qyvex.tech/api/jobs/post \
+            -H "Authorization: Bearer ${{ secrets.JOB_POST_SECRET }}" \
+            -H "Content-Type: application/json" \
+            -d "{\"jobs\": $JOBS_JSON}"
+          
+          echo "Job posting request sent!"
