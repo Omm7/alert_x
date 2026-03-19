@@ -18,10 +18,7 @@ export function LoadingOverlay() {
     <>
       {isLoading && (
         <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/40 backdrop-blur-sm">
-          <div className="flex flex-col items-center gap-4">
-            <Loader />
-            <p className="text-sm font-medium text-slate-700 dark:text-slate-200">Loading...</p>
-          </div>
+          <Loader />
         </div>
       )}
     </>

@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button";
 import { AnimatedButton } from "@/components/ui/animated-button";
 import Link from "next/link";
 import { useLoading } from "@/lib/loading-context";
+import { Loader } from "@/components/ui/loader";
 
 export default function EditJobPage({
   params,
@@ -114,9 +115,7 @@ export default function EditJobPage({
   if (loading || status === "loading" || !jobId) {
     return (
       <div className="flex h-screen items-center justify-center">
-        <div className="text-center">
-          <p className="text-slate-600">Loading...</p>
-        </div>
+        <Loader />
       </div>
     );
   }

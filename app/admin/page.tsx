@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { Trash2, Edit2 } from "lucide-react";
 import Link from "next/link";
 import { useLoading } from "@/lib/loading-context";
+import { Loader } from "@/components/ui/loader";
 
 export default function AdminPage() {
   const { data: session, status } = useSession();
@@ -72,9 +73,7 @@ export default function AdminPage() {
   if (loading || status === "loading") {
     return (
       <div className="flex h-screen items-center justify-center">
-        <div className="text-center">
-          <p className="text-slate-700 dark:text-slate-300">Loading admin panel...</p>
-        </div>
+        <Loader />
       </div>
     );
   }

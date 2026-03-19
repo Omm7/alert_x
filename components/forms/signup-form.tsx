@@ -8,6 +8,7 @@ import { AnimatedButton } from "@/components/ui/animated-button";
 import { Select } from "@/components/ui/select";
 import { BRANCH_OPTIONS, INDIAN_COLLEGES, YEAR_OPTIONS } from "@/lib/college-options";
 import { useLoading } from "@/lib/loading-context";
+import { Loader } from "@/components/ui/loader";
 
 export function SignupForm() {
   const router = useRouter();
@@ -33,10 +34,8 @@ export function SignupForm() {
 
   if (isCheckingSession) {
     return (
-      <div className="space-y-4">
-        <div className="h-10 w-full bg-slate-200 dark:bg-slate-700 rounded-lg animate-pulse" />
-        <div className="h-10 w-full bg-slate-200 dark:bg-slate-700 rounded-lg animate-pulse" />
-        <div className="h-10 w-full bg-slate-200 dark:bg-slate-700 rounded-lg animate-pulse" />
+      <div className="flex min-h-[140px] items-center justify-center">
+        <Loader />
       </div>
     );
   }

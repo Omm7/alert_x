@@ -6,6 +6,7 @@ import { Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import { Button } from "@/components/ui/button";
+import { Loader } from "@/components/ui/loader";
 import { ProfileDropdown } from "./profile-dropdown";
 
 const links = [
@@ -129,9 +130,10 @@ export function Navbar() {
         {/* Desktop Auth Area */}
         <div className="hidden items-center gap-4 md:flex">
           {status === "loading" ? (
-            <div className="flex gap-2">
-              <div className="h-9 w-24 bg-white/10 rounded-lg animate-pulse" />
-              <div className="h-9 w-20 bg-white/10 rounded-lg animate-pulse" />
+              <div className="flex items-center justify-center px-3">
+                <div className="scale-[0.4]">
+                  <Loader />
+                </div>
             </div>
           ) : !session ? (
             <>
@@ -218,9 +220,10 @@ export function Navbar() {
               {/* Mobile Auth Area */}
               <div className="pt-2 border-t border-white/5 space-y-2">
                 {status === "loading" ? (
-                  <div className="flex flex-col gap-2">
-                    <div className="h-9 w-full bg-white/10 rounded-lg animate-pulse" />
-                    <div className="h-9 w-full bg-white/10 rounded-lg animate-pulse" />
+                    <div className="flex items-center justify-center py-3">
+                      <div className="scale-[0.4]">
+                        <Loader />
+                      </div>
                   </div>
                 ) : !session ? (
                   <>

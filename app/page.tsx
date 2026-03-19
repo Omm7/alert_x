@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { JobCard } from "@/components/jobs/job-card";
 import { Card } from "@/components/ui/card";
 import { SubscriptionForm } from "@/components/forms/subscription-form";
+import { TechnologyCategories } from "@/components/home/technology-categories";
 
 export const dynamic = "force-dynamic";
 
@@ -73,13 +74,7 @@ export default async function Home() {
           </div>
         </div>
         <div className="fade-in animate-scale-in rounded-2xl border border-slate-300/50 dark:border-cyan-500/20 bg-gradient-to-br from-white/80 via-blue-50/50 to-cyan-50/30 dark:from-slate-900/50 dark:via-blue-900/20 dark:to-cyan-900/20 p-8 backdrop-blur-sm shadow-xl dark:shadow-cyan-500/10 hover:shadow-2xl transition-all duration-500">
-          <div className="grid grid-cols-2 gap-4">
-            {["React", "Node.js", "AI", "Cloud", "Security", "Data"].map((item, idx) => (
-              <div key={item} className="rounded-xl border border-blue-200/50 dark:border-cyan-500/20 bg-gradient-to-br from-blue-50/80 to-cyan-50/50 dark:from-blue-500/10 dark:to-cyan-500/5 p-4 text-center font-bold text-slate-900 dark:text-cyan-300 transition-all duration-300 hover:scale-105 hover:border-blue-400 dark:hover:border-cyan-500/50 hover:shadow-lg cursor-pointer" style={{animationDelay: `${idx * 100}ms`}}>
-                {item}
-              </div>
-            ))}
-          </div>
+          <TechnologyCategories />
         </div>
       </section>
 

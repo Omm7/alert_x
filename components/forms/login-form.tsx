@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input";
 import { AnimatedButton } from "@/components/ui/animated-button";
 import { Button } from "@/components/ui/button";
 import { useLoading } from "@/lib/loading-context";
+import { Loader } from "@/components/ui/loader";
 
 export function LoginForm() {
   const router = useRouter();
@@ -22,6 +23,8 @@ export function LoginForm() {
   // Client-side redirect if already logged in
   useEffect(() => {
     if (status === "authenticated" && session?.user) {
+      setLoading(false);
+      stopLoading();
       if (session.user.role === "ADMIN") {
         router.replace("/admin");
       } else {
@@ -34,10 +37,8 @@ export function LoginForm() {
 
   if (isCheckingSession) {
     return (
-      <div className="space-y-4">
-        <div className="h-10 w-full bg-slate-200 dark:bg-slate-700 rounded-lg animate-pulse" />
-        <div className="h-10 w-full bg-slate-200 dark:bg-slate-700 rounded-lg animate-pulse" />
-        <div className="h-10 w-full bg-slate-200 dark:bg-slate-700 rounded-lg animate-pulse" />
+      <div className="flex min-h-[140px] items-center justify-center">
+        <Loader />
       </div>
     );
   }
@@ -50,36 +51,41 @@ export function LoginForm() {
     const email = String(formData.get("email") || "").trim().toLowerCase();
     const password = String(formData.get("password") || "");
 
-    const loginCheck = await fetch("/api/auth/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
-    });
+    try {
+      const loginCheck = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
 
-    if (!loginCheck.ok) {
-      const payload = (await loginCheck.json().catch(() => null)) as { error?: string } | null;
+      if (!loginCheck.ok) {
+        const payload = (await loginCheck.json().catch(() => null)) as { error?: string } | null;
+        setLoading(false);
+        stopLoading();
+        setError(payload?.error || "Invalid email or password");
+        return;
+      }
+
+      const result = await signIn("credentials", {
+        email,
+        password,
+        redirect: false,
+      });
+
+      if (result?.error) {
+        setLoading(false);
+        stopLoading();
+        setError("Invalid email or password");
+        return;
+      }
+
+      // Keep loading active for successful logins until session updates
+      // and the redirect runs in the useEffect above.
+    } catch {
       setLoading(false);
       stopLoading();
-      setError(payload?.error || "Invalid email or password");
-      return;
+      setError("Unable to login right now. Please try again.");
     }
-
-    const result = await signIn("credentials", {
-      email,
-      password,
-      redirect: false,
-    });
-
-    if (result?.error) {
-      setLoading(false);
-      stopLoading();
-      setError("Invalid email or password");
-      return;
-    }
-
-    // Session will update automatically via useSession hook
-    // The useEffect above will detect the change and redirect
-    stopLoading();
   }
 
   return (
