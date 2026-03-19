@@ -50,19 +50,19 @@ async function sendJobAlertEmail(emailPayload) {
 // Job data - copy from lib/jobs-to-add.ts
 const NEW_JOBS = [
   {
-    title: "Intern (Bachelor’s)",
-    companyName: "Honeywell",
-    location: "Bangalore",
+    title: "Data Engineer",
+    companyName: "Cornerstone",
+    location: "Hyderabad",
     salary: "Not Disclosed",
-    jobType: "INTERN",
-    category: "INTERNSHIP",
+    jobType: "FULL_TIME",
+    category: "DATA_SCIENCE",
     courseType: "BTECH",
     experienceLevel: "ENTRY",
-    description: "Join Honeywell as an Intern to work on real projects, assist in data analysis and research, and collaborate with teams to drive innovation.",
-    requirements: "Analytical Skills, Problem Solving, Data Analysis, Research, Team Collaboration, Pursuing Bachelor’s (Engineering/CS/Business)",
-    responsibilities: "Assist in data analysis, Conduct research, Work on real projects, Collaborate with teams",
-    benefits: "Hands-on experience, Industry exposure, Strong career foundation, Learning opportunities",
-    applyLink: "https://ibqbjb.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/Honeywell/job/142340"
+    description: "Join Cornerstone as a Data Engineer to build and maintain data pipelines, manage ETL processes, and support analytics and machine learning workflows.",
+    requirements: "SQL, Data Modeling, Python, Java, Scala, ETL, Data Pipelines, Airflow, Snowflake, dbt, AWS, Azure, GCP, Bachelor's in CS/IT/Engineering",
+    responsibilities: "Build data pipelines, Manage ETL processes, Work with cloud platforms, Support analytics and ML workflows",
+    benefits: "Hands-on data engineering experience, Exposure to modern data tools, Career growth, Industry-level projects",
+    applyLink: "https://cornerstone.csod.com/ux/ats/careersite/2/home/requisition/11015?c=cornerstone&sq=Data%20Engineer"
   },
 ];
 
