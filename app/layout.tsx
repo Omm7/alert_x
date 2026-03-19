@@ -101,11 +101,11 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/qyvex short logo.png", type: "image/png", sizes: "32x32" },
-      { url: "/qyvex short logo.png", type: "image/png", sizes: "192x192" },
+      { url: "/qyvex short logo.png?v=2", type: "image/png", sizes: "32x32" },
+      { url: "/qyvex short logo.png?v=2", type: "image/png", sizes: "192x192" },
     ],
-    shortcut: "/qyvex short logo.png",
-    apple: "/qyvex short logo.png",
+    shortcut: "/qyvex short logo.png?v=2",
+    apple: "/qyvex short logo.png?v=2",
   },
 };
 
@@ -117,10 +117,10 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link rel="icon" type="image/png" href="/qyvex short logo.png" sizes="32x32" />
-        <link rel="icon" type="image/png" href="/qyvex short logo.png" sizes="192x192" />
-        <link rel="shortcut icon" type="image/png" href="/qyvex short logo.png" />
-        <link rel="apple-touch-icon" href="/qyvex short logo.png" />
+        <link rel="icon" type="image/png" href="/qyvex short logo.png?v=2" sizes="32x32" />
+        <link rel="icon" type="image/png" href="/qyvex short logo.png?v=2" sizes="192x192" />
+        <link rel="shortcut icon" type="image/png" href="/qyvex short logo.png?v=2" />
+        <link rel="apple-touch-icon" href="/qyvex short logo.png?v=2" />
       </head>
       <body className={`${jakarta.variable} min-h-screen antialiased`}>
         <Providers>
