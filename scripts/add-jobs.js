@@ -50,8 +50,9 @@ async function sendJobAlertEmail(emailPayload) {
 // Job data - copy from lib/jobs-to-add.ts
 const NEW_JOBS = [
   {
-     title: "Data Engineer I",
+    title: "Data Engineer I",
     companyName: "Cencora",
+    website: "https://www.cencora.com",
     location: "Pune",
     salary: "Not Disclosed",
     jobType: "FULL_TIME",
@@ -229,6 +230,9 @@ async function addJobsWithAlerts() {
         `❌ Error processing ${jobData.title}:`,
         error instanceof Error ? error.message : error
       );
+      if (error instanceof Error && error.stack) {
+        console.error("Stack trace:", error.stack);
+      }
       console.log("");
     }
   }
