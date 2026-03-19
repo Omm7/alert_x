@@ -50,19 +50,19 @@ async function sendJobAlertEmail(emailPayload) {
 // Job data - copy from lib/jobs-to-add.ts
 const NEW_JOBS = [
   {
-    title: "Freshers / Early Career Opportunities",
-    companyName: "Siemens",
-    location: "Pune",
+    title: "Intern (Bachelor’s)",
+    companyName: "Honeywell",
+    location: "Bangalore",
     salary: "Not Disclosed",
-    jobType: "FULL_TIME",
-    category: "OFF_CAMPUS_DRIVE",
+    jobType: "INTERN",
+    category: "INTERNSHIP",
     courseType: "BTECH",
     experienceLevel: "ENTRY",
-    description: "Join Siemens through multiple fresher and early career opportunities to work with global teams, build innovative solutions, and shape the future of technology.",
-    requirements: "Problem Solving, Technical Skills, Analytical Skills, Communication, Teamwork, Graduates with relevant skills",
-    responsibilities: "Work on innovative solutions, Collaborate with global teams, Contribute to technology-driven projects",
-    benefits: "Global exposure, Career growth opportunities, Work with a leading tech company, Learning and development",
-    applyLink: "https://jobs.siemens.com/en_US/externaljobs/JobDetail/491311?source=LinkedIn&sourceType=PREMIUM_POST_SITE"
+    description: "Join Honeywell as an Intern to work on real projects, assist in data analysis and research, and collaborate with teams to drive innovation.",
+    requirements: "Analytical Skills, Problem Solving, Data Analysis, Research, Team Collaboration, Pursuing Bachelor’s (Engineering/CS/Business)",
+    responsibilities: "Assist in data analysis, Conduct research, Work on real projects, Collaborate with teams",
+    benefits: "Hands-on experience, Industry exposure, Strong career foundation, Learning opportunities",
+    applyLink: "https://ibqbjb.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/Honeywell/job/142340"
   },
 ];
 
